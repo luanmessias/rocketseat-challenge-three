@@ -12,6 +12,8 @@ import {
 
 import api from './services/api'
 
+import SvgLike from './assets/svg/like'
+
 export default function App() {
   const [repositories, setRepositories] = useState([]);
 
@@ -34,6 +36,13 @@ export default function App() {
         return repository
       }
     });
+
+    async function handleRemoveRepository(id) {
+      const newRepositories = repositories.filter(
+        (repository) => repository.id !== id
+      );
+      setRepositories(newRepositories);
+    };
 
     setRepositories(repositoriesUpdated);
   }
@@ -76,6 +85,14 @@ export default function App() {
                 testID={`like-button-${repository.id}`}
               >
                 <Text style={styles.buttonText}>Curtir</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleLikeRepository(repository.id)}
+                testID={`like-button-${repository.id}`}
+              >
+                <Text style={styles.buttonTextDel}>Deletar</Text>
               </TouchableOpacity>
             </View>
 
@@ -130,6 +147,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buttonText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginRight: 10,
+    color: "#fff",
+    backgroundColor: "#7159c1",
+    padding: 15,
+  },
+  buttonDel: {
     fontSize: 14,
     fontWeight: "bold",
     marginRight: 10,
