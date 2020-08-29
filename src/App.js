@@ -63,15 +63,14 @@ export default function App() {
     }
 
     setRepositories(repositoriesUpdated);
-  };
+  }
 
   async function handleRemoveRepository(id) {
     const newRepositories = repositories.filter(
       (repository) => repository.id !== id
     );
     setRepositories(newRepositories);
-  };
-
+  }
 
   return (
     <>
@@ -83,9 +82,7 @@ export default function App() {
           keyExtractor={(repository) => repository.id}
           renderItem={({ item: repository }) => (
             <View style={styles.repositoryContainer}>
-
               <View style={styles.likesContainer}>
-                
                 <Text
                   style={styles.likeText}
                   testID={`repository-likes-${repository.id}`}
@@ -113,7 +110,6 @@ export default function App() {
                   {repository.techs.map((tech) => getTech(tech))}
                 </View>
               </View>
-
 
               <TouchableOpacity
                 style={styles.btDelete}
